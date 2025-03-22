@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_music/core/theme/app_pallete.dart';
 
 class AuthGradientButton extends StatelessWidget {
-  const AuthGradientButton({super.key});
+  const AuthGradientButton({
+    super.key,
+    required this.widget,
+    required this.onTap,
+  });
+  final Widget widget;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +27,12 @@ class AuthGradientButton extends StatelessWidget {
           backgroundColor: Pallete.kTransparentColor,
           shadowColor: Pallete.kTransparentColor,
         ),
-        onPressed: () {},
-        child: Text(
-          'Sign Up',
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-        ),
+        onPressed: onTap,
+        child: widget,
+        // child: Text(
+        //   buttonText,
+        //   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+        // ),
       ),
     );
   }

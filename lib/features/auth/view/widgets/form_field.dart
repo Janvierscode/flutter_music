@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 
 class CustomField extends StatelessWidget {
-  const CustomField({super.key, required this.controller, required this.label});
+  const CustomField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    this.isObscureText = false,
+  });
   final TextEditingController controller;
-  final String label;
+  final String hintText;
+  final bool isObscureText;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(decoration: InputDecoration(hintText: label));
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(hintText: hintText),
+      obscureText: isObscureText,
+      validator: (value) {
+        if (value!.trim().isEmpty) {
+          return '$hintText is missing!';
+        } else {
+          return null;
+        }
+      },
+    );
   }
 }
